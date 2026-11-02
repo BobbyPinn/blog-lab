@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router'
 import Header from './components/layout/Header.jsx'
 import Footer from './components/layout/Footer.jsx'
-import BlogPost from './components/blog/BlogPost.jsx'
-import CommentSection from './components/comments/CommentSection.jsx'
-import { post, initialComments } from './data/posts.js'
+import BlogPostsPage from './pages/BlogPostsPage.jsx'
+import IndividualPostPage from './pages/IndividualPostPage.jsx'
+import ContactPage from './pages/ContactPage.jsx'
 
 function App() {
   return (
@@ -11,21 +11,9 @@ function App() {
       <Header />
       <main className="main">
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <BlogPost
-                  title={post.title}
-                  author={post.author}
-                  date={post.date}
-                  content={post.content}
-                  likes={post.likes}
-                />
-                <CommentSection initialComments={initialComments} />
-              </>
-            }
-          />
+          <Route path="/" element={<BlogPostsPage />} />
+          <Route path="/post/:post_id" element={<IndividualPostPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </main>
       <Footer />

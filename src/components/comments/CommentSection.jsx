@@ -9,8 +9,7 @@ function CommentSection({ initialComments }) {
     if (!text.trim()) return
     const newComment = {
       id: Date.now(),
-      author: 'Guest',
-      date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+      name: 'Guest',
       text: text.trim(),
     }
     setComments([newComment, ...comments])
@@ -32,7 +31,7 @@ function CommentSection({ initialComments }) {
       <ul className="comment-list">
         {comments.map((c) => (
           <li key={c.id} className="comment">
-            <p className="meta"><strong>{c.author}</strong> · {c.date}</p>
+            <p className="meta"><strong>{c.name}</strong></p>
             <p>{c.text}</p>
           </li>
         ))}

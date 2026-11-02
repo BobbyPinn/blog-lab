@@ -58,6 +58,36 @@ h2 { margin-top: 0; color: #0f5132; }
 .comment p { margin: 0; }
 .comment .meta { margin-bottom: .2rem; }
 
+.page-title { margin: 0 0 1rem; color: #0f5132; }
+
+.post-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.25rem; }
+.post-card h2 { margin-bottom: .25rem; }
+.post-card h2 a { color: #0f5132; text-decoration: none; }
+.post-card h2 a:hover { text-decoration: underline; }
+.post-card p { margin: 0 0 .75rem; }
+.read-more { color: #0f5132; font-weight: 600; text-decoration: none; }
+.read-more:hover { text-decoration: underline; }
+
+.stack-form { display: flex; flex-direction: column; gap: .4rem; }
+.stack-form label { font-weight: 600; margin-top: .5rem; }
+.stack-form input, .stack-form textarea {
+  padding: .7rem .9rem; border: 1px solid #c9d3cd; border-radius: 8px;
+  font: inherit; resize: vertical;
+}
+.stack-form input:focus, .stack-form textarea:focus { outline: 2px solid #0f5132; border-color: transparent; }
+.stack-form .btn { align-self: flex-start; margin-top: 1rem; }
+
+.btn {
+  padding: .7rem 1.4rem; border: none; border-radius: 8px;
+  background: #0f5132; color: #fff; font: inherit; font-weight: 600; cursor: pointer;
+}
+.btn:hover { background: #0b3d26; }
+
+.confirmation {
+  padding: .9rem 1rem; border-radius: 8px; margin-bottom: 1.25rem;
+  background: #e6f4ea; border: 1px solid #a7d7b8; color: #0f5132;
+}
+
 .footer { background: #0f5132; color: #d9e6df; text-align: center; padding: 1rem; font-size: .9rem; }
 .footer p { margin: 0; }
 
