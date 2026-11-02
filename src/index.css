@@ -154,7 +154,6 @@ h2 { margin-top: 0; color: var(--heading); }
 
 .footer { background: var(--header-bg); color: var(--footer-text); text-align: center; padding: 1rem; font-size: .9rem; }
 .footer p { margin: 0; }
-.footer a { color: #f2c94c; }
 
 /* Phones and small tablets */
 @media (max-width: 600px) {
