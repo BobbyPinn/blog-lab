@@ -14,7 +14,6 @@ body {
   --input-bg: #fff;
   --text: #1f2933;
   --muted: #5f6b76;
-  --border: #dde3df;
   --border-strong: #c9d3cd;
   --divider: #e6ebe8;
   --heading: #0f5132;
@@ -28,7 +27,6 @@ body {
   --ok-bg: #e6f4ea;
   --ok-border: #a7d7b8;
   --ok-text: #0f5132;
-  --shadow: 0 2px 6px rgba(0,0,0,.05);
   color-scheme: light;
 }
 
@@ -38,7 +36,6 @@ body {
   --input-bg: #121a20;
   --text: #e6edf3;
   --muted: #9aa7b3;
-  --border: #2c3740;
   --border-strong: #3a4752;
   --divider: #2c3740;
   --heading: #f2c94c;
@@ -52,7 +49,6 @@ body {
   --ok-bg: #16301f;
   --ok-border: #2f6b45;
   --ok-text: #b7e4c7;
-  --shadow: 0 2px 8px rgba(0,0,0,.4);
   color-scheme: dark;
 }
 
@@ -91,14 +87,13 @@ h1, h2, h3, .brand { font-family: 'Fraunces', Georgia, serif; font-weight: 600; 
 .theme-toggle:hover { border-color: #f2c94c; color: #f2c94c; }
 
 .main {
-  flex: 1; width: 100%; max-width: 780px; margin: 0 auto;
+  flex: 1; width: 100%; max-width: 680px; margin: 0 auto; /* about 65 characters per line */
   padding: 2rem 1rem; display: flex; flex-direction: column; gap: 1.5rem;
 }
 
-.card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-  padding: 1.75rem; box-shadow: var(--shadow);
-}
+/* Flat sections, like the home page list: a thin line separates the post from its comments */
+.card + .card { border-top: 1px solid var(--divider); padding-top: 2rem; }
+article.card p { font-size: 1.06rem; }
 .post-title { margin: 0 0 .25rem; color: var(--heading); }
 .meta { margin: 0 0 1rem; color: var(--muted); font-size: .9rem; }
 h2 { margin-top: 0; color: var(--heading); }
@@ -121,6 +116,7 @@ h2 { margin-top: 0; color: var(--heading); }
 .comment .meta { margin-bottom: .2rem; }
 
 .page-title { margin: 0 0 1rem; color: var(--heading); }
+.intro { margin: 0 0 1rem; font-size: 1.1rem; color: var(--muted); }
 
 .post-list { list-style: none; padding: 0; margin: 0; }
 .post-card { padding: 1.5rem 0; border-bottom: 1px solid var(--divider); }
@@ -161,7 +157,6 @@ h2 { margin-top: 0; color: var(--heading); }
   .nav { gap: .3rem .9rem; }
   .nav a, .theme-toggle { font-size: .95rem; }
   .main { padding: 1.25rem .75rem; gap: 1.25rem; }
-  .card { padding: 1.25rem; }
   .page-title, .post-title { font-size: 1.6rem; line-height: 1.25; }
   .post-card h2 { font-size: 1.3rem; }
   .stack-form .btn { align-self: stretch; } /* full-width buttons are easier to tap */
