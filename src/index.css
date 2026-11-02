@@ -41,17 +41,9 @@ h2 { margin-top: 0; color: #0f5132; }
 .like-btn:hover { border-color: #d6455d; color: #d6455d; }
 .like-btn.liked { background: #fdecef; border-color: #d6455d; color: #d6455d; }
 
-.comment-form { display: flex; gap: .5rem; margin-bottom: 1.25rem; }
-.comment-form input {
-  flex: 1; padding: .7rem .9rem; border: 1px solid #c9d3cd;
-  border-radius: 8px; font-size: 1rem;
-}
-.comment-form input:focus { outline: 2px solid #0f5132; border-color: transparent; }
-.comment-form button {
-  padding: .7rem 1.4rem; border: none; border-radius: 8px;
-  background: #0f5132; color: #fff; font-weight: 600; cursor: pointer;
-}
-.comment-form button:hover { background: #0b3d26; }
+.comment-form { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid #e6ebe8; }
+.comment-form h3 { margin: 0; color: #0f5132; }
+.empty { color: #5f6b76; font-style: italic; }
 
 .comment-list { list-style: none; padding: 0; margin: 0; }
 .comment { border-top: 1px solid #e6ebe8; padding: .9rem 0; }
@@ -93,6 +85,5 @@ h2 { margin-top: 0; color: #0f5132; }
 
 @media (max-width: 600px) {
   .header-inner { flex-direction: column; align-items: flex-start; }
-  .comment-form { flex-direction: column; }
   .card { padding: 1.25rem; }
 }

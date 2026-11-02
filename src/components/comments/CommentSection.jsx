@@ -1,41 +1,31 @@
 import { useState } from 'react'
+import CommentForm from './CommentForm.jsx'
 
+// Each post renders its own CommentSection with key={post.id},
+// so switching posts starts a fresh comments state for that post.
 function CommentSection({ initialComments }) {
   const [comments, setComments] = useState(initialComments)
-  const [text, setText] = useState('')
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    if (!text.trim()) return
-    const newComment = {
-      id: Date.now(),
-      name: 'Guest',
-      text: text.trim(),
-    }
-    setComments([newComment, ...comments])
-    setText('')
+  function addComment(comment) {
+    setComments([...comments, { id: Date.now(), ...comment }])
   }
 
   return (
     <section className="card">
       <h2>Comments ({comments.length})</h2>
-      <form className="comment-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Write a comment..."
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      <ul className="comment-list">
-        {comments.map((c) => (
-          <li key={c.id} className="comment">
-            <p className="meta"><strong>{c.name}</strong></p>
-            <p>{c.text}</p>
-          </li>
-        ))}
-      </ul>
+      {comments.length === 0 ? (
+        <p className="empty">No comments yet. Be the first to comment!</p>
+      ) : (
+        <ul className="comment-list">
+          {comments.map((c) => (
+            <li key={c.id} className="comment">
+              <p className="meta"><strong>{c.name}</strong></p>
+              <p>{c.text}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+      <CommentForm onAddComment={addComment} />
     </section>
   )
 }
