@@ -59,7 +59,11 @@ body {
 .page {
   min-height: 100vh; display: flex; flex-direction: column;
   background: var(--bg); color: var(--text);
+  overflow-wrap: anywhere; /* long words or URLs wrap instead of overflowing on phones */
 }
+
+/* Visible outline when moving through links and buttons with the keyboard */
+a:focus-visible, button:focus-visible { outline: 3px solid #f2c94c; outline-offset: 2px; }
 
 .header { background: var(--header-bg); color: #fff; }
 .header-inner {
@@ -119,6 +123,8 @@ h2 { margin-top: 0; color: var(--heading); }
 .page-title { margin: 0 0 1rem; color: var(--heading); }
 
 .post-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.25rem; }
+.post-card { transition: transform .15s, box-shadow .15s; }
+.post-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.12); }
 .post-card h2 { margin-bottom: .25rem; }
 .post-card h2 a { color: var(--heading); text-decoration: none; }
 .post-card h2 a:hover { text-decoration: underline; }
@@ -149,7 +155,15 @@ h2 { margin-top: 0; color: var(--heading); }
 .footer { background: var(--header-bg); color: var(--footer-text); text-align: center; padding: 1rem; font-size: .9rem; }
 .footer p { margin: 0; }
 
+/* Phones and small tablets */
 @media (max-width: 600px) {
-  .header-inner { flex-direction: column; align-items: flex-start; }
+  .header-inner { flex-direction: column; align-items: flex-start; gap: .6rem; }
+  .nav { gap: .25rem; }
+  .nav a, .theme-toggle { font-size: .95rem; }
+  .theme-toggle { margin-left: 0; }
+  .main { padding: 1.25rem .75rem; gap: 1.25rem; }
   .card { padding: 1.25rem; }
+  .page-title, .post-title { font-size: 1.6rem; line-height: 1.25; }
+  .post-card h2 { font-size: 1.3rem; }
+  .stack-form .btn { align-self: stretch; } /* full-width buttons are easier to tap */
 }
