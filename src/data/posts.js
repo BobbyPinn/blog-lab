@@ -26,10 +26,12 @@ export const posts = [
     content: [
       'My blog started as a single page. To give every post its own address, I added React Router. It reads the URL and decides which component to show, without the browser reloading the page.',
       'Each post now lives at a path like /post/2. The number at the end is a URL parameter, and the post page reads it with the useParams hook to find the right post in my data.',
-      'The navbar uses Link components instead of regular anchor tags, so moving between pages feels instant.',
+      'The nav bar uses Link components instead of regular anchor tags, so moving between pages feels instant.',
     ],
     likes: 8,
-    comments: [],
+    comments: [
+      { id: 1, name: 'Kevin Tran', text: 'The useParams part finally made URL parameters make sense to me.' },
+    ],
   },
   {
     id: 3,
@@ -38,8 +40,8 @@ export const posts = [
     date: 'November 1, 2026',
     summary: 'How createContext and useContext let any component read the light or dark theme.',
     content: [
-      'I wanted a dark mode toggle in the navbar, but the theme affects the whole page. Passing a theme prop through every component would get messy fast. This problem is called prop drilling.',
-      'React Context solves it. I created a ThemeContext, wrapped the app in a provider, and now any component can call useContext to read the current theme or switch it.',
+      'I thought it would be cool to add a dark mode toggle in the navbar, but the theme affects the whole page. Passing a theme prop through every component could get tricky. This problem is called prop drilling.',
+      'I created a ThemeContext, wrapped the app in a provider, and now any component can call useContext to read the current theme or switch it.',
       'I also save the choice in localStorage, so the site remembers dark mode after a refresh.',
     ],
     likes: 5,
