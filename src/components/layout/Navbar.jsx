@@ -1,7 +1,12 @@
+import { useContext } from 'react'
 import { Link, NavLink } from 'react-router'
+import { ThemeContext } from '../../context/ThemeContext.js'
 import { posts } from '../../data/posts.js'
 
 function Navbar() {
+  const { theme, toggleTheme } = useContext(ThemeContext)
+  const nextTheme = theme === 'light' ? 'dark' : 'light'
+
   return (
     <header className="header">
       <div className="header-inner">
@@ -20,6 +25,14 @@ function Navbar() {
             </NavLink>
           ))}
           <NavLink to="/contact">Contact</NavLink>
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${nextTheme} mode`}
+          >
+            {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+          </button>
         </nav>
       </div>
     </header>
