@@ -28,9 +28,6 @@ body {
   --ok-bg: #e6f4ea;
   --ok-border: #a7d7b8;
   --ok-text: #0f5132;
-  --error-bg: #fdecec;
-  --error-border: #f1aeb5;
-  --error-text: #a12a2a;
   color-scheme: light;
 }
 
@@ -53,9 +50,6 @@ body {
   --ok-bg: #16301f;
   --ok-border: #2f6b45;
   --ok-text: #b7e4c7;
-  --error-bg: #3a1c1c;
-  --error-border: #7a3434;
-  --error-text: #ffb4b4;
   color-scheme: dark;
 }
 
@@ -149,14 +143,13 @@ h2 { margin-top: 0; color: var(--heading); }
   background: var(--btn-bg); color: var(--btn-text); font: inherit; font-weight: 600; cursor: pointer;
 }
 .btn:hover { background: var(--btn-hover); }
-.btn:disabled { opacity: .65; cursor: wait; }
 
 .confirmation {
   padding: .9rem 1rem; border-radius: 8px; margin-bottom: 1.25rem;
   background: var(--ok-bg); border: 1px solid var(--ok-border); color: var(--ok-text);
 }
 
-/* Loading spinner (bonus feature) */
+/* Loading spinner */
 .spinner-wrap { display: flex; align-items: center; gap: .6rem; color: var(--muted); padding: 1rem 0; }
 .spinner {
   width: 1.4rem; height: 1.4rem; border-radius: 50%;
@@ -166,23 +159,7 @@ h2 { margin-top: 0; color: var(--heading); }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 2.4s; } }
 
-/* Error messages (bonus feature) */
-.error {
-  padding: .9rem 1rem; border-radius: 8px;
-  background: var(--error-bg); border: 1px solid var(--error-border); color: var(--error-text);
-}
-.field-error { margin: 0; color: var(--error-text); font-size: .9rem; }
-.stack-form [aria-invalid="true"] { border-color: var(--error-text); }
-.comment-form .confirmation, .comment-form .error { margin: .75rem 0 0; }
-
-/* Author details on the post page */
-.author { margin-bottom: 1.25rem; }
-.author-name { margin: 0; }
-.author .meta { margin: 0; }
-.author a { color: var(--muted); }
-
 .comment-name { font-weight: 600; color: var(--heading); margin-bottom: .2rem !important; }
-.post-card .read-more { display: inline-block; margin-top: .5rem; }
 
 .footer { background: var(--header-bg); color: var(--footer-text); text-align: center; padding: 1rem; font-size: .9rem; }
 .footer p { margin: 0; }
