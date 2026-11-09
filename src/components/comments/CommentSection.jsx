@@ -1,42 +1,66 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import CommentForm from './CommentForm.jsx'
+import Spinner from '../layout/Spinner.jsx'
 
-function CommentSection({ initialComments }) {
-  const [comments, setComments] = useState(initialComments)
-  const [text, setText] = useState('')
+function CommentSection({ postId }) {
+  const [comments, setComments] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    if (!text.trim()) return
-    const newComment = {
-      id: Date.now(),
-      author: 'Guest',
-      date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-      text: text.trim(),
+  useEffect(() => {
+    let ignore = false
+
+    fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
+      .then((response) => {
+        if (!response.ok) throw new Error(`Status ${response.status}`)
+        return response.json()
+      })
+      .then((data) => {
+        if (!ignore) setComments(data)
+      })
+      .catch((err) => {
+        console.error('Error fetching comments:', err)
+        if (!ignore) setError('Sorry, the comments could not be loaded.')
+      })
+      .finally(() => {
+        if (!ignore) setLoading(false)
+      })
+
+    return () => {
+      ignore = true
     }
-    setComments([newComment, ...comments])
-    setText('')
+  }, [postId])
+
+  // CommentForm calls this after its POST request succeeds
+  function addComment(newComment) {
+    // JSONPlaceholder doesn't really save comments and returns id 501 every time,
+    // so give each new comment its own id to keep React's list keys unique.
+    setComments((current) => [...current, { ...newComment, id: `new-${Date.now()}` }])
   }
 
   return (
     <section className="card">
-      <h2>Comments ({comments.length})</h2>
-      <form className="comment-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Write a comment..."
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      <ul className="comment-list">
-        {comments.map((c) => (
-          <li key={c.id} className="comment">
-            <p className="meta"><strong>{c.author}</strong> · {c.date}</p>
-            <p>{c.text}</p>
-          </li>
-        ))}
-      </ul>
+      <h2>Comments{!loading && !error && ` (${comments.length})`}</h2>
+
+      {loading && <Spinner label="Loading comments…" />}
+      {error && <p className="error" role="alert">{error}</p>}
+
+      {!loading && !error && comments.length === 0 && (
+        <p className="empty">No comments yet. Be the first to comment!</p>
+      )}
+
+      {comments.length > 0 && (
+        <ul className="comment-list">
+          {comments.map((c) => (
+            <li key={c.id} className="comment">
+              <p className="comment-name">{c.name}</p>
+              <p>{c.body}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <CommentForm postId={postId} onCommentPosted={addComment} />
     </section>
   )
 }
